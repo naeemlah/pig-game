@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.player {
+  flex: 1;
+  min-width: 300px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+.player--0 {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.player--1 {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.player--active {
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.player--active .name {
+  font-weight: 700;
+  color: #8e2de2;
+}
+
+.player--winner {
+  background-color: rgba(46, 204, 113, 0.2);
+}
+
+.player--winner .name {
+  font-weight: 700;
+  color: #27ae60;
+}
+
+.name {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.score {
+  font-size: 5rem;
+  font-weight: 300;
+  color: #8e2de2;
+  margin-bottom: 50px;
+}
+
+.current {
+  background-color: #8e2de2;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 180px;
+  transition: all 0.3s;
+}
+
+.player--active .current {
+  background-color: #4a00e0;
+  transform: scale(1.05);
+}
+
+.current-label {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.current-score {
+  font-size: 2.5rem;
+}
+
+.dice-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.dice {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  transition: transform 0.3s;
+}
+
+.dice.rolling {
+  animation: roll 0.5s ease-out;
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.rules {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.rules h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #4a00e0;
+}
+
+.rules ul {
+  list-style-type: none;
+  padding: 0 20px;
+}
+
+.rules li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.rules li::before {
+  content: "•";
+  color: #8e2de2;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+  }
+
+  .dice-container {
+    position: relative;
+    transform: none;
+    left: auto;
+    top: auto;
+    margin: 20px 0;
+    order: 3;
+  }
+
+  .player {
+    padding: 20px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 80%;
+    justify-content: center;
+  }
+}
